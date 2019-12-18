@@ -4,6 +4,8 @@
     <title>Document</title>
   </head>
   <body>
+    <button onclick="showUsers()">Show Users</button>
+    <div id="demo"></div>
     <script>
       var users = [
         {
@@ -19,6 +21,14 @@
           lname: "Nolan"
         }
       ];
+
+      function showUsers() {
+        var results = "";
+        for (i = 0; i < users.length; i++) {
+          results = results + users[i].fname + "<br>";
+        }
+        document.getElementById("demo").innerHTML = results;
+      }
     </script>
   </body>
 </html>
