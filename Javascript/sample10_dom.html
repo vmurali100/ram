@@ -8,14 +8,29 @@
       <label for="fname">First Name : </label>
       <input type="text" name="" id="fname" /><br />
       <label for="lname">Last Name : </label>
-      <input type="text" name="" id="lname" />
+      <input type="text" name="" id="lname" /><br />
       <button type="button" onclick="getValues()">Get Values</button>
     </form>
-
+    <hr />
+    <div id="demo"></div>
     <script>
+      var users = [];
       function getValues() {
-        var fname = document.getElementById("fname").value;
-        console.log(fname);
+        var firstName = document.getElementById("fname").value;
+        var lastName = document.getElementById("lname").value;
+        var user = {
+          fname: firstName,
+          lname: lastName
+        };
+        users.push(user);
+
+        var reults = "";
+
+        for (i = 0; i < users.length; i++) {
+          reults = reults + users[i].fname + " " + users[i].lname + "<br>";
+        }
+
+        document.getElementById("demo").innerHTML = reults;
       }
     </script>
   </body>
