@@ -12,14 +12,21 @@
       <label for="email">Email : </label>
       <input type="text" name="" id="email" /> <br />
       <label for="gender">Gender</label><br />
-      <input type="radio" name="" id="" />Male
-      <input type="radio" name="" id="" />Female <br />
-      <label for="subject">Subject</label><br />
-      <input type="checkbox" name="" id="" />HTML
-      <input type="checkbox" name="" id="" />CSS
-      <input type="checkbox" name="" id="" />JS
-      <input type="checkbox" name="" id="" />React
+      <input type="radio" name="gender" value="Male" class="gender" />Male
+      <input type="radio" name="gender" value="Female" class="gender" />Female
       <br />
+      <label for="subject">Subject</label><br />
+      <input type="checkbox" name="subject" value="HTML" />HTML
+      <input type="checkbox" name="subject" value="CSS" />CSS
+      <input type="checkbox" name="subject" value="JS" />JS
+      <input type="checkbox" name="subject" value="React" />React
+      <br />
+      <select name="" id="city">
+        <option value="Bangalore">Bangalore</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Kochin">Kochin</option>
+        <option value="Hyderabad">Hyderabad</option> </select
+      ><br /><br />
       <button type="button" onclick="getValues()">Get Values</button>
     </form>
     <hr />
@@ -29,16 +36,55 @@
       function getValues() {
         var firstName = document.getElementById("fname").value;
         var lastName = document.getElementById("lname").value;
+        var email = document.getElementById("email").value;
+        var city = document.getElementById("city").value;
         var user = {
           fname: firstName,
-          lname: lastName
+          lname: lastName,
+          email: email,
+          city: city
         };
-        users.push(user);
 
+        // Getting Radio Btns Value
+        var allRadioBtns = document.getElementsByClassName("gender");
+
+        for (i = 0; i < allRadioBtns.length; i++) {
+          if (allRadioBtns[i].checked) {
+            console.log(allRadioBtns[i].value);
+            user.gender = allRadioBtns[i].value;
+          }
+        }
+
+        //Get All Check Boxes
+
+        var allCheckBoxes = document.getElementsByName("subject");
+        var checkBoxValue = [];
+        for (i = 0; i < allCheckBoxes.length; i++) {
+          if (allCheckBoxes[i].checked) {
+            checkBoxValue.push(allCheckBoxes[i].value);
+          }
+        }
+
+        user.subjects = checkBoxValue;
+        users.push(user);
+        console.log(users);
         var reults = "";
 
         for (i = 0; i < users.length; i++) {
-          reults = reults + users[i].fname + " " + users[i].lname + "<br>";
+          reults =
+            reults +
+            users[i].fname +
+            " <br>" +
+            users[i].lname +
+            "<br>" +
+            users[i].email +
+            "<br>" +
+            users[i].gender +
+            "<br>" +
+            users[i].city +
+            "<br>" +
+            users[i].subjects +
+            "<br><hr>";
         }
 
         document.getElementById("demo").innerHTML = reults;
