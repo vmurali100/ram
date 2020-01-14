@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="fname">First Name :</label>
+    <input type="text" id="fname" /> <br />
+    <label for="lname">Last Name :</label>
+    <input type="text" id="lname" /> <br />
+    <label for="city">City</label>
+    <select name="" id="city">
+      <option value="Bangalore">Bangalore</option>
+      <option value="Kochin">Kochin</option>
+      <option value="Chennai">Chennai</option>
+      <option value="Hyderabad">Hyderabad</option>
+    </select>
+    <br />
+    <label for="gender">Gender : </label>
+    Male <input type="radio" id="" name="gender" value="Female" /> Female
+    <input type="radio" id="" name="gender" value="Male" />
+    <br />
+
+    <label for="subjects">Subjects</label>
+    <input type="checkbox" name="subjects" id="" value="HTML" />HTML
+    <input type="checkbox" name="subjects" id="" value="CSS" />CSS
+    <input type="checkbox" name="subjects" id="" value="JAVASCRIPT" />JAVASCRIPT
+    <input type="checkbox" name="subjects" id="" value="Angular" />Angular
+    <br />
+    <button onclick="getInfo()">Get Info</button>
+
+    <script>
+      function getInfo() {
+        var person = {
+          fname: document.getElementById("fname").value,
+          lname: document.getElementById("lname").value,
+          city: document.getElementById("city").value
+        };
+
+        //Capturing Radio Button Values
+        var rbtns = document.getElementsByName("gender");
+
+        rbtns.forEach(btn => {
+          console.log(btn.checked);
+          person.gender = btn.value;
+        });
+
+        //Capturing Subjects(Checkbox Values)
+
+        var cBoxes = document.getElementsByName("subjects");
+        var cboxValues = [];
+        cBoxes.forEach(cbox => {
+          if (cbox.checked) {
+            cboxValues.push(cbox.value);
+          }
+        });
+
+        person.subjects = cboxValues;
+        console.log(person);
+      }
+    </script>
+  </body>
+</html>
